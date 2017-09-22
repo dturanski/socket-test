@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: test-no-probe
+spec:
+  template:
+    metadata:
+      labels:
+        app: test-no-probe
+    spec:
+      containers:
+      - name: server
+        image: dturanski/test-server
+        env:
+        - name: HOST
+          value: "localhost"
+      - name: client
+        image: dturanski/test-client
+        env:
+        - name: HOST
+          value: "localhost"

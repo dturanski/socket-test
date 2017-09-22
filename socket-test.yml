@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: test
+spec:
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+      - name: server
+        image: dturanski/test-server
+        livenessProbe:
+          tcpSocket:
+            port: 9999
+        readinessProbe:
+          tcpSocket:
+            port: 9999
+        ports:
+        - containerPort: 9999
+      - name: client
+        image: dturanski/test-client
+        env:
+        - name: HOST
+          value: "localhost"

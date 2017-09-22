@@ -24,6 +24,8 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
 if __name__ == "__main__":
     HOST, PORT = os.getenv('HOST',''), 9999
 
+    print ("starting server on %s:%d" % (HOST, PORT))
+
     # Create the server, binding to localhost on port 9999
     server = SocketServer.TCPServer((HOST, PORT), MyTCPHandler)
 
